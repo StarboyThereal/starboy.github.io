@@ -4,30 +4,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b0c10">
-<title>StarBoy | Roblox Portfolio</title>
+<meta name="theme-color" content="#090a10">
+<title>StarBoy | Roblox Management Portfolio</title>
+<meta name="description" content="StarBoy's Roblox portfolio. Game management, scouting, marketing and testing.">
 
 <style>
 :root {
-    --bg: #090a0f;
-    --panel: #12141d;
-    --panel2: #191c28;
-    --text: #f4f5f7;
-    --muted: #a1a6b3;
-    --line: #292d38;
-    --accent: #a78bfa;
+    --bg: #090a10;
+    --panel: #11131d;
+    --panel2: #171a27;
+    --text: #f5f5fa;
+    --muted: #999eaf;
+    --line: #292d3b;
+    --purple: #a78bfa;
     --cyan: #67e8f9;
 }
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+    scroll-padding-top: 100px;
 }
 
 body {
@@ -43,97 +44,108 @@ a {
     text-decoration: none;
 }
 
+::selection {
+    background: var(--purple);
+    color: white;
+}
+
 .wrap {
-    width: min(1080px, calc(100% - 40px));
+    width: min(1120px, calc(100% - 44px));
     margin: auto;
 }
 
 /* BACKGROUND */
 
-body::before {
-    content: "";
+.background-glow {
     position: fixed;
-    width: 600px;
-    height: 600px;
-    top: -250px;
-    right: -200px;
-    background: radial-gradient(circle, #a78bfa20, transparent 70%);
+    inset: 0;
     pointer-events: none;
-    z-index: -1;
+    z-index: -2;
+    overflow: hidden;
 }
 
-body::after {
-    content: "";
-    position: fixed;
-    width: 500px;
-    height: 500px;
-    bottom: -250px;
-    left: -200px;
-    background: radial-gradient(circle, #67e8f915, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
+.glow {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: .12;
+    animation: floatGlow 12s ease-in-out infinite alternate;
+}
+
+.glow.one {
+    background: #8b5cf6;
+    top: -280px;
+    left: -150px;
+}
+
+.glow.two {
+    background: #06b6d4;
+    right: -250px;
+    top: 350px;
+    animation-delay: -5s;
+}
+
+@keyframes floatGlow {
+    from { transform: translate(0, 0); }
+    to { transform: translate(100px, 70px); }
 }
 
 /* NAVIGATION */
 
 nav {
-    height: 82px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid var(--line);
+    align-items: center;
+    min-height: 82px;
+    background: #090a10dd;
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid #ffffff12;
+}
+
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-weight: 900;
-    letter-spacing: .13em;
-    font-size: 16px;
+    gap: 13px;
+    font-weight: 950;
+    font-size: 19px;
+    letter-spacing: .15em;
 }
-
-.logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #a78bfa, #67e8f9);
-    color: #090a0f;
-    display: grid;
-    place-items: center;
-    font-size: 21px;
-    font-weight: 900;
-    transition: .3s;
-}
-
-.brand:hover .logo {
-    transform: rotate(-10deg) scale(1.1);
-    box-shadow: 0 0 25px #a78bfa70;
-}
-
-/* TUPAC IMAGE */
 
 .profile-image {
-    width: 43px;
-    height: 43px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
-    border: 2px solid var(--accent);
-    box-shadow: 0 0 15px #a78bfa50;
-    transition: .35s;
+    border: 2px solid var(--purple);
+    box-shadow: 0 0 20px #a78bfa55;
+    transition: .4s;
 }
 
-.profile-image:hover {
-    transform: scale(1.15) rotate(6deg);
-    box-shadow: 0 0 25px #a78bfa;
+.brand:hover .profile-image {
+    transform: scale(1.12) rotate(7deg);
+    box-shadow: 0 0 30px #a78bfa99;
 }
 
 .navlinks {
     display: flex;
-    gap: 28px;
+    align-items: center;
+    gap: 30px;
     color: var(--muted);
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .navlinks a {
@@ -142,284 +154,41 @@ nav {
 
 .navlinks a:hover {
     color: var(--cyan);
+}
+
+.nav-contact {
+    padding: 10px 17px;
+    border: 1px solid #a78bfa65;
+    border-radius: 10px;
+    color: white !important;
+    background: #a78bfa12;
+}
+
+.nav-contact:hover {
+    background: #a78bfa30;
     transform: translateY(-2px);
 }
 
 /* HERO */
 
 .hero {
-    padding: 115px 0 95px;
-    position: relative;
-}
-
-.eyebrow {
-    color: var(--cyan);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    animation: fadeUp .8s ease both;
-}
-
-.hero h1 {
-    font-size: clamp(52px, 9vw, 92px);
-    line-height: 1.02;
-    letter-spacing: -.065em;
-    margin: 22px 0;
-    animation: fadeUp .8s .1s ease both;
-}
-
-.hero h1 span {
-    background: linear-gradient(90deg, #fff, #a78bfa 60%, #67e8f9);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.lead {
-    max-width: 650px;
-    color: var(--muted);
-    font-size: 18px;
-    animation: fadeUp .8s .2s ease both;
-}
-
-.actions {
+    min-height: 650px;
     display: flex;
-    gap: 13px;
-    flex-wrap: wrap;
-    margin-top: 32px;
-    animation: fadeUp .8s .3s ease both;
-}
-
-/* BUTTONS */
-
-.btn {
-    display: inline-flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    padding: 13px 21px;
-    border-radius: 12px;
-    background: #f4f5f7;
-    color: #101116;
-    font-weight: 800;
-    font-size: 14px;
-    transition: .3s;
-    border: 1px solid transparent;
-}
-
-.btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px #ffffff20;
-}
-
-.btn.secondary {
-    background: var(--panel2);
-    color: var(--text);
-    border: 1px solid var(--line);
-}
-
-.btn.secondary:hover {
-    border-color: var(--accent);
-    box-shadow: 0 8px 25px #a78bfa20;
-}
-
-.chips {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    animation: fadeUp .8s .4s ease both;
-}
-
-.chip {
-    border: 1px solid var(--line);
-    background: #ffffff08;
-    border-radius: 999px;
-    padding: 7px 14px;
-    color: #d5d7df;
-    font-size: 12px;
-    transition: .3s;
-}
-
-.chip:hover {
-    background: #a78bfa20;
-    border-color: var(--accent);
-    transform: translateY(-3px);
-}
-
-/* SECTIONS */
-
-section {
-    padding: 75px 0;
-    border-top: 1px solid var(--line);
-}
-
-.section-kicker {
-    font-size: 11px;
-    letter-spacing: .2em;
-    color: var(--accent);
-    font-weight: 900;
-}
-
-.section-title {
-    font-size: 36px;
-    letter-spacing: -.04em;
-    margin: 10px 0 27px;
-}
-
-.about {
-    max-width: 760px;
-    color: var(--muted);
-    font-size: 17px;
-}
-
-/* CARDS */
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 17px;
-}
-
-.card {
-    padding: 27px;
-    border: 1px solid var(--line);
-    background: linear-gradient(145deg, var(--panel), #101117);
-    border-radius: 19px;
-    min-height: 190px;
-    transition: .35s;
+    padding: 100px 0 90px;
     position: relative;
-    overflow: hidden;
 }
 
-.card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #a78bfa12, transparent 65%);
-    opacity: 0;
-    transition: .35s;
+.hero-content {
+    max-width: 820px;
+    animation: enter .9s ease both;
 }
 
-.card:hover {
-    transform: translateY(-7px);
-    border-color: #a78bfa80;
-    box-shadow: 0 15px 35px #00000040;
-}
-
-.card:hover::before {
-    opacity: 1;
-}
-
-.card .num {
-    color: var(--accent);
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: .14em;
-}
-
-.card h3 {
-    margin: 13px 0 8px;
-    font-size: 21px;
-}
-
-.card p {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-/* FOCUS */
-
-.focus {
-    display: flex;
-    gap: 17px;
-    align-items: flex-start;
-    padding: 23px;
-    border-radius: 17px;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    transition: .3s;
-}
-
-.focus:hover {
-    border-color: var(--cyan);
-    transform: translateX(5px);
-}
-
-.focus + .focus {
-    margin-top: 13px;
-}
-
-.dot {
-    width: 11px;
-    height: 11px;
-    margin-top: 9px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 18px #67e8f9;
-    flex: none;
-}
-
-.focus p {
-    margin-top: 4px;
-    color: var(--muted);
-    font-size: 14px;
-}
-
-/* CONTACT */
-
-.contact {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 30px;
-    background: linear-gradient(120deg, #211d34, #141923);
-    border: 1px solid #38334d;
-    border-radius: 20px;
-    transition: .3s;
-}
-
-.contact:hover {
-    border-color: var(--accent);
-    box-shadow: 0 10px 35px #a78bfa15;
-}
-
-.contact p {
-    margin-top: 5px;
-    color: var(--muted);
-}
-
-/* FOOTER */
-
-footer {
-    padding: 30px 0;
-    color: #737987;
-    font-size: 12px;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-}
-
-/* SCROLL ANIMATIONS */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity .7s ease, transform .7s ease;
-}
-
-.reveal.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* GENERAL ANIMATION */
-
-@keyframes fadeUp {
+@keyframes enter {
     from {
         opacity: 0;
-        transform: translateY(25px);
+        transform: translateY(35px);
     }
     to {
         opacity: 1;
@@ -427,56 +196,444 @@ footer {
     }
 }
 
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--cyan);
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.eyebrow::before {
+    content: "";
+    width: 25px;
+    height: 1px;
+    background: var(--cyan);
+}
+
+.hero h1 {
+    font-size: clamp(55px, 9vw, 100px);
+    line-height: .99;
+    letter-spacing: -.075em;
+    font-weight: 900;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #fff, #b69aff 50%, #67e8f9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 200% auto;
+    animation: gradientMove 6s linear infinite;
+}
+
+@keyframes gradientMove {
+    to { background-position: 200% center; }
+}
+
+.hero-description {
+    color: var(--muted);
+    max-width: 640px;
+    font-size: 17px;
+    margin-top: 28px;
+    line-height: 1.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 14px 22px;
+    border-radius: 11px;
+    background: white;
+    color: #101116;
+    font-size: 13px;
+    font-weight: 850;
+    transition: .3s;
+    border: 1px solid transparent;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px #ffffff25;
+}
+
+.btn-outline {
+    background: #ffffff08;
+    color: white;
+    border-color: var(--line);
+}
+
+.btn-outline:hover {
+    background: #a78bfa18;
+    border-color: var(--purple);
+}
+
+.hero-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.tag {
+    padding: 7px 14px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: #ffffff06;
+    color: #c4c7d2;
+    font-size: 11px;
+    transition: .3s;
+}
+
+.tag:hover {
+    border-color: var(--purple);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* SECTION STYLE */
+
+section {
+    padding: 95px 0;
+    border-top: 1px solid #ffffff10;
+}
+
+.section-label {
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .22em;
+}
+
+.section-heading {
+    font-size: clamp(30px, 5vw, 43px);
+    letter-spacing: -.05em;
+    margin: 10px 0 18px;
+    font-weight: 850;
+}
+
+.section-description {
+    color: var(--muted);
+    max-width: 650px;
+    font-size: 15px;
+}
+
+/* ABOUT */
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.about-box {
+    background: linear-gradient(145deg, #171a27, #10121a);
+    border: 1px solid var(--line);
+    padding: 30px;
+    border-radius: 18px;
+    transition: .35s;
+}
+
+.about-box:hover {
+    border-color: #a78bfa75;
+    transform: translateY(-5px);
+}
+
+.about-box p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.about-stat {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+}
+
+.stat {
+    padding: 22px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.stat:hover {
+    border-color: var(--cyan);
+    transform: translateY(-4px);
+}
+
+.stat strong {
+    display: block;
+    font-size: 17px;
+    color: var(--cyan);
+}
+
+.stat span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* EXPERTISE */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 17px;
+    margin-top: 35px;
+}
+
+.card {
+    position: relative;
+    padding: 29px;
+    border: 1px solid var(--line);
+    background: linear-gradient(145deg, #151824, #10121a);
+    border-radius: 17px;
+    overflow: hidden;
+    transition: .35s;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    right: -80px;
+    top: -80px;
+    background: var(--purple);
+    filter: blur(75px);
+    opacity: 0;
+    transition: .4s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #a78bfa80;
+    box-shadow: 0 18px 45px #00000050;
+}
+
+.card:hover::after {
+    opacity: .25;
+}
+
+.card-number {
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .16em;
+}
+
+.card h3 {
+    margin: 17px 0 9px;
+    font-size: 21px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* SKILLS */
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.skill {
+    padding: 12px 17px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+    font-size: 13px;
+    transition: .3s;
+}
+
+.skill:hover {
+    background: #a78bfa20;
+    border-color: var(--purple);
+    transform: translateY(-4px);
+}
+
+/* DEVELOPMENT */
+
+.timeline {
+    margin-top: 35px;
+    border-left: 1px solid #a78bfa70;
+    padding-left: 27px;
+}
+
+.timeline-item {
+    position: relative;
+    padding: 23px;
+    margin-bottom: 15px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.timeline-item:hover {
+    border-color: var(--cyan);
+    transform: translateX(6px);
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    left: -34px;
+    top: 29px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 15px var(--cyan);
+}
+
+.timeline-item p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* CONTACT */
+
+.contact-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 38px;
+    border: 1px solid #a78bfa50;
+    background: linear-gradient(115deg, #211c37, #121722);
+    border-radius: 20px;
+    margin-top: 30px;
+    transition: .35s;
+}
+
+.contact-box:hover {
+    border-color: var(--purple);
+    box-shadow: 0 15px 50px #a78bfa15;
+}
+
+.contact-box h3 {
+    font-size: 21px;
+}
+
+.contact-box p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: #777d8d;
+    font-size: 11px;
+    border-top: 1px solid #ffffff10;
+}
+
+/* REVEAL ANIMATIONS */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* MOBILE */
 
-@media(max-width: 650px) {
+@media(max-width: 700px) {
     nav {
-        height: auto;
         min-height: 75px;
+    }
+
+    .nav-inner {
         flex-wrap: wrap;
-        gap: 15px;
-        padding: 15px 0;
+        gap: 14px;
+        padding: 13px 0;
+    }
+
+    .brand {
+        font-size: 16px;
+    }
+
+    .profile-image {
+        width: 39px;
+        height: 39px;
     }
 
     .navlinks {
-        gap: 15px;
-        font-size: 12px;
         width: 100%;
         justify-content: space-between;
+        gap: 8px;
+        font-size: 11px;
     }
 
     .hero {
-        padding: 75px 0 65px;
+        min-height: 570px;
+        padding: 75px 0;
     }
 
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .contact {
-        align-items: flex-start;
-        flex-direction: column;
+    .hero-description {
+        font-size: 15px;
     }
 
     section {
-        padding: 55px 0;
+        padding: 65px 0;
+    }
+
+    .about-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-box {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 26px;
     }
 
     footer {
         flex-direction: column;
     }
-
-    .section-title {
-        font-size: 30px;
-    }
 }
-
-/* ACCESSIBILITY */
 
 @media(prefers-reduced-motion: reduce) {
     *, *::before, *::after {
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
+        animation: none !important;
+        transition: none !important;
         scroll-behavior: auto !important;
     }
 
@@ -489,22 +646,32 @@ footer {
 </head>
 
 <body>
+
+<div class="background-glow">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+</div>
+
 <div class="wrap">
 
 <!-- NAVIGATION -->
 
 <nav>
-    <a class="brand" href="#">
-        <span class="logo">S</span>
-        STARBOY
-        <img src="./tupac.jpg" class="profile-image" alt="Tupac">
-    </a>
+    <div class="nav-inner">
 
-    <div class="navlinks">
-        <a href="#about">About</a>
-        <a href="#expertise">Expertise</a>
-        <a href="#focus">Focus</a>
-        <a href="#contact">Contact</a>
+        <a class="brand" href="#">
+            STARBOY
+            <img src="./tupac.jpg" class="profile-image" alt="Tupac">
+        </a>
+
+        <div class="navlinks">
+            <a href="#about">About</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#skills">Skills</a>
+            <a href="#focus">Development</a>
+            <a href="#contact" class="nav-contact">Contact ↗</a>
+        </div>
+
     </div>
 </nav>
 
@@ -513,134 +680,239 @@ footer {
 <!-- HERO -->
 
 <header class="hero">
-    <div class="eyebrow">Roblox portfolio · Management & operations</div>
 
-    <h1>
-        Building games.<br>
-        <span>Growing ideas.</span>
-    </h1>
+    <div class="hero-content">
 
-    <p class="lead">
-        I'm StarBoy, a Roblox enthusiast focused on game management,
-        scouting, marketing and testing. I enjoy spotting promising
-        experiences and helping teams think about better player
-        experiences and growth.
-    </p>
+        <div class="eyebrow">
+            Roblox management & operations
+        </div>
 
-    <div class="actions">
-        <a class="btn" href="#contact">Get in touch ↗</a>
-        <a class="btn secondary" href="#expertise">Explore my skills</a>
+        <h1>
+            Building games.<br>
+            <span class="gradient-text">Growing ideas.</span>
+        </h1>
+
+        <p class="hero-description">
+            I'm StarBoy, a Roblox enthusiast focused on game management,
+            scouting, marketing and testing. I enjoy spotting promising
+            experiences and helping teams think about better player
+            experiences and growth.
+        </p>
+
+        <div class="hero-buttons">
+            <a class="btn" href="#contact">
+                Let's connect ↗
+            </a>
+
+            <a class="btn btn-outline" href="#expertise">
+                Explore my work ↓
+            </a>
+        </div>
+
+        <div class="hero-tags">
+            <span class="tag">Game Management</span>
+            <span class="tag">Scouting</span>
+            <span class="tag">Marketing</span>
+            <span class="tag">Testing</span>
+        </div>
+
     </div>
 
-    <div class="chips">
-        <span class="chip">Game Management</span>
-        <span class="chip">Scouting</span>
-        <span class="chip">Marketing</span>
-        <span class="chip">Testing</span>
-    </div>
 </header>
 
 <!-- ABOUT -->
 
 <section id="about" class="reveal">
-    <div class="section-kicker">01 / ABOUT</div>
-    <h2 class="section-title">A little about me</h2>
 
-    <p class="about">
-        I'm interested in the business and development side of Roblox.
-        My main interests are discovering games with potential,
-        researching trends and opportunities, supporting project
-        organization, and testing experiences to give useful feedback.
-        I'm also learning more about Roblox Studio and Luau scripting.
-    </p>
+    <div class="about-layout">
+
+        <div>
+            <div class="section-label">01 / ABOUT ME</div>
+            <h2 class="section-heading">
+                More than just playing games.
+            </h2>
+
+            <p class="section-description">
+                I'm interested in the business and development side of
+                Roblox. I enjoy discovering games with potential,
+                researching trends and opportunities, supporting
+                project organization and testing experiences to give
+                useful feedback.
+            </p>
+        </div>
+
+        <div class="about-box">
+            <p>
+                My main focus is understanding what makes Roblox
+                experiences successful. From identifying opportunities
+                to helping teams stay organized, I enjoy the strategic
+                side of game development.
+                <br><br>
+                I'm also learning more about Roblox Studio and
+                Luau scripting to expand my technical knowledge.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="about-stat">
+
+        <div class="stat">
+            <strong>Management</strong>
+            <span>Project organization</span>
+        </div>
+
+        <div class="stat">
+            <strong>Research</strong>
+            <span>Game discovery</span>
+        </div>
+
+        <div class="stat">
+            <strong>Strategy</strong>
+            <span>Growth opportunities</span>
+        </div>
+
+        <div class="stat">
+            <strong>Development</strong>
+            <span>Learning Luau</span>
+        </div>
+
+    </div>
+
 </section>
 
 <!-- EXPERTISE -->
 
 <section id="expertise" class="reveal">
-    <div class="section-kicker">02 / WHAT I DO</div>
-    <h2 class="section-title">Areas of focus</h2>
 
-    <div class="grid">
+    <div class="section-label">02 / WHAT I DO</div>
+    <h2 class="section-heading">Areas of expertise.</h2>
+    <p class="section-description">
+        Different areas I focus on within the Roblox ecosystem.
+    </p>
+
+    <div class="cards">
 
         <article class="card">
-            <div class="num">01 — ORGANIZATION</div>
+            <div class="card-number">01 — ORGANIZATION</div>
             <h3>Game Management</h3>
             <p>
                 Helping organize project work, keep track of tasks
-                and support clear communication within a development team.
+                and support clear communication within a
+                development team.
             </p>
         </article>
 
         <article class="card">
-            <div class="num">02 — DISCOVERY</div>
+            <div class="card-number">02 — DISCOVERY</div>
             <h3>Game Scouting</h3>
             <p>
                 Researching Roblox experiences, looking at visits,
-                CCU, trends and concepts to spot games with growth potential.
+                CCU, trends and concepts to spot games with
+                growth potential.
             </p>
         </article>
 
         <article class="card">
-            <div class="num">03 — PROMOTION</div>
+            <div class="card-number">03 — PROMOTION</div>
             <h3>Marketing</h3>
             <p>
                 Exploring ways to present and promote Roblox games,
-                attract players and improve awareness of an experience.
+                attract players and improve awareness of
+                an experience.
             </p>
         </article>
 
         <article class="card">
-            <div class="num">04 — QUALITY</div>
+            <div class="card-number">04 — QUALITY</div>
             <h3>Game Testing</h3>
             <p>
-                Playing through experiences, checking gameplay and
-                sharing feedback about bugs, usability and player experience.
+                Playing through experiences, checking gameplay
+                and sharing feedback about bugs, usability
+                and player experience.
             </p>
         </article>
 
     </div>
+
 </section>
 
-<!-- CURRENT DEVELOPMENT -->
+<!-- SKILLS -->
+
+<section id="skills" class="reveal">
+
+    <div class="section-label">03 / SKILLS & INTERESTS</div>
+    <h2 class="section-heading">What I work with.</h2>
+
+    <p class="section-description">
+        Areas and tools I'm interested in developing further.
+    </p>
+
+    <div class="skills">
+        <span class="skill">Roblox Game Research</span>
+        <span class="skill">Game Management</span>
+        <span class="skill">Market Research</span>
+        <span class="skill">Game Testing</span>
+        <span class="skill">Trend Analysis</span>
+        <span class="skill">Project Organization</span>
+        <span class="skill">Roblox Studio</span>
+        <span class="skill">Luau Scripting</span>
+        <span class="skill">Marketing</span>
+    </div>
+
+</section>
+
+<!-- DEVELOPMENT -->
 
 <section id="focus" class="reveal">
-    <div class="section-kicker">03 / CURRENT DEVELOPMENT</div>
-    <h2 class="section-title">Always improving</h2>
 
-    <div class="focus">
-        <span class="dot"></span>
-        <div>
+    <div class="section-label">04 / CURRENT DEVELOPMENT</div>
+    <h2 class="section-heading">Always improving.</h2>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
             <strong>Learning Luau & Roblox Studio</strong>
             <p>
                 Building scripting knowledge and learning more about
                 how Roblox experiences are made.
             </p>
         </div>
-    </div>
 
-    <div class="focus">
-        <span class="dot"></span>
-        <div>
-            <strong>Roblox game research</strong>
+        <div class="timeline-item">
+            <strong>Roblox Game Research</strong>
             <p>
                 Following game trends, player engagement and analytics
                 to better understand what helps experiences grow.
             </p>
         </div>
+
+        <div class="timeline-item">
+            <strong>Developing Management Skills</strong>
+            <p>
+                Improving project organization, communication
+                and understanding of development workflows.
+            </p>
+        </div>
+
     </div>
+
 </section>
 
 <!-- CONTACT -->
 
 <section id="contact" class="reveal">
-    <div class="section-kicker">04 / CONTACT</div>
-    <h2 class="section-title">Let's connect.</h2>
 
-    <div class="contact">
+    <div class="section-label">05 / CONTACT</div>
+    <h2 class="section-heading">Let's connect.</h2>
+
+    <div class="contact-box">
+
         <div>
-            <strong>Have a project or opportunity?</strong>
-            <p>Reach out to me on Discord.</p>
+            <h3>Have a project or opportunity?</h3>
+            <p>
+                Reach out to me on Discord. I'd love to connect.
+            </p>
         </div>
 
         <a class="btn"
@@ -649,12 +921,9 @@ footer {
            rel="noopener noreferrer">
             Starboy_thereal ↗
         </a>
+
     </div>
 
-    <p style="color:var(--muted);font-size:13px;margin-top:14px">
-        Discord:
-        <strong style="color:var(--text)">Starboy_thereal</strong>
-    </p>
 </section>
 
 </main>
@@ -668,16 +937,23 @@ footer {
 
 </div>
 
-<!-- SCROLL ANIMATION SCRIPT -->
+<!-- ANIMATIONS -->
 
 <script>
 const observer = new IntersectionObserver((entries) => {
+
     entries.forEach(entry => {
+
         if (entry.isIntersecting) {
+
             entry.target.classList.add("show");
+
             observer.unobserve(entry.target);
+
         }
+
     });
+
 }, {
     threshold: 0.12
 });
